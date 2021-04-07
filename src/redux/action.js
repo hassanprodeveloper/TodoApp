@@ -16,6 +16,12 @@ const deleteTodo = (data) => {
     dispatch({type: 'DELETE_TODOS', payload: data});
   };
 };
+// this function is used for deleting data from list
+const resetTodo = (data) => {
+  return (dispatch) => {
+    dispatch({type: 'RESET_TODOS', payload: data});
+  };
+};
 // this function update the status of todos
 const todoStatus = (data) => {
   return (dispatch) => {
@@ -23,4 +29,4 @@ const todoStatus = (data) => {
   };
 };
 
-export {todoData, deleteTodo, todoStatus, initilizeTodos};
+export {todoData,resetTodo, deleteTodo, todoStatus, initilizeTodos};

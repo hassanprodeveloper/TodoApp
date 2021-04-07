@@ -1,12 +1,35 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Alert} from 'react-native';
 import {Avatar, Caption, Drawer, Title} from 'react-native-paper';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Signature from './Signature';
+import {connect} from 'react-redux';
+import {resetTodo} from '../redux/action';
 
 const DrawerContent = (props) => {
-  const [inDarkTheme, setIsDarkTheme] = React.useState(false);
+  const clearTodosData = () => {
+    // this function clear all todos data
+    props.navigation.closeDrawer();
+    Alert.alert(
+      'Are You Sure?',
+      'If you press Yes then all your task will be deleted',
+      [
+        {
+          text: 'Cancel',
+          // onPress: () => props.navigation.closeDrawer(),
+          style: 'cancel',
+        },
+        {
+          text: 'Yes',
+          onPress: () => {
+            props.clearTodo([]);
+            // props.navigation.closeDrawer();
+          },
+        },
+      ],
+    );
+  };
 
   return (
     <View style={{flex: 1}}>
@@ -40,7 +63,7 @@ const DrawerContent = (props) => {
                 <Icon name="notification-clear-all" color={color} size={size} />
               )}
               label="Clear All Todos"
-              onPress={() => props.navigation.navigate('DrawerHome')}
+              onPress={() => clearTodosData()}
             />
           </Drawer.Section>
         </View>
@@ -50,7 +73,10 @@ const DrawerContent = (props) => {
     </View>
   );
 };
-export default DrawerContent;
+const mapDispatchToProps = (dispatch) => ({
+  clearTodo: (data) => dispatch(resetTodo(data)),
+});
+export default connect(null, mapDispatchToProps)(DrawerContent);
 // STYLE SHEET DWON HERE
 const styles = StyleSheet.create({
   drawerContent: {

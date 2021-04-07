@@ -4,7 +4,7 @@ export default (state = INITIAL_STATE, action) => {
   //
   switch (action.type) {
     case 'INITILIZE':
-      console.log('action data initilized ===', action.payload);
+      // console.log('action data initilized ===', action.payload);
       return action.payload;
   }
   //
@@ -24,8 +24,14 @@ export default (state = INITIAL_STATE, action) => {
     case 'SET_TODOS_STATUS': {
       const objID = state.findIndex((obj) => obj.id == action.payload.id);
       state[objID].done = action.payload.status;
-      console.log('todos reducer action #26', state);
+      // console.log('todos reducer action #26', state);
       return state;
+    }
+  }
+  //
+  switch (action.type) {
+    case 'RESET_TODOS': {
+      return [];
     }
   }
   //

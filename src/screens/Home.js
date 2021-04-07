@@ -83,6 +83,7 @@ const mapDispatchToProps = (dispatch) => ({
   addTodo: (data) => dispatch(todoData(data)),
   deleteTodo: (data) => dispatch(deleteTodo(data)),
 });
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
 // STYLE_SHEET
 const styles = StyleSheet.create({
   appCont: {
@@ -120,4 +121,3 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
