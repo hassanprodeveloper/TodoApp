@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
 import {TextLoader, DotsLoader} from 'react-native-indicator';
 import {connect} from 'react-redux';
-import {storeObj, getObj} from '../config/AsyncConfig';
+// import {storeObj, getObj} from '../config/AsyncConfig';
 import {initilizeTodos} from '../redux/action';
 import {MMKV} from 'react-native-mmkv';
 
@@ -15,25 +15,26 @@ const SplashScreen = ({navigation, initilizeTodos}) => {
     todosArrData();
   }, 1000);
 
-  const todosArrData = async () => {
-    const data = await getObj('todosArr');
-    console.log('data=====..>>>',data)
-   if(data !== ''){
-     await initilizeTodos(data);
-     navigation.replace('AppDrawer');
-    }else{
-
-      navigation.replace('AppDrawer');
+  const getObj = (key) => {
+    const jsonData = MMKV.getString(key);
+    if (jsonData != undefined) {
+      return JSON.parse(jsonData);
+    } else {
+      return [];
     }
   };
 
-  //  useEffect(() => {
-  //   settodosArrState(getObj('todosArr'))
-  //     },[]);
-  // setTimeout(() => {
-  //     initilizeTodos(todosArrState)
-  //     navigation.replace('AppDrawer');
-  // }, 3000);
+  const todosArrData = async () => {
+    const data = await getObj('todosArr');
+    console.log('data=====..>>>', data);
+    if (data !== '' || data != undefined || data != null) {
+      await initilizeTodos(data);
+      navigation.replace('AppDrawer');
+    } else {
+      await initilizeTodos([]);
+      navigation.replace('AppDrawer');
+    }
+  };
 
   return (
     <>
