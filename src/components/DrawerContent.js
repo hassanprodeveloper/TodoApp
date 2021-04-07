@@ -17,14 +17,12 @@ const DrawerContent = (props) => {
       [
         {
           text: 'Cancel',
-          // onPress: () => props.navigation.closeDrawer(),
           style: 'cancel',
         },
         {
           text: 'Yes',
           onPress: () => {
             props.clearTodo([]);
-            // props.navigation.closeDrawer();
           },
         },
       ],
