@@ -11,7 +11,7 @@ export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
     case 'INITILIZE' : 
     console.log('action data initilized ===', action.payload)
-    return [action.payload]
+    return action.payload
   }
 
   switch (action.type) {

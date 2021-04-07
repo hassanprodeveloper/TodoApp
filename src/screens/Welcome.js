@@ -10,7 +10,7 @@ import {
 import {connect} from 'react-redux';
 import Entypo from 'react-native-vector-icons/Entypo';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-// import{storeData, getData} from '../config/AsyncConfig'
+import {storeObj, getObj} from '../config/AsyncConfig';
 // importing functions from action file
 import {todoData, deleteTodo} from '../redux/action';
 
@@ -20,11 +20,10 @@ import TodoCard from '../components/TodoCard';
 
 const Welcome = ({navigation, todoArr, addTodo, deleteTodo}) => {
   const [InputData, setInputData] = useState('');
-  // console.log('total todo #welcome==> ', todoArr);
 
-  // console.log('total todo #welcome_24==> ', todoArr.filter((item) => item.2))
+  console.log('todos array welcome ', todoArr);
+  storeObj(todoArr, 'todosArr');
 
-  // console.log('total todo #welcome_29==> ', totalTodo)
   const addTodoHandler = () => {
     let totalTodo = todoArr.length;
     if (InputData !== '') {
@@ -69,8 +68,11 @@ const Welcome = ({navigation, todoArr, addTodo, deleteTodo}) => {
             style={{marginHorizontal: 10}}
           />
         </View>
-        {/* <Button onPress={()=> storeData(todoArr, '@todosArr')} title='set' /> */}
-        {/* <Button onPress={()=> getData('@todosArr') } title='get' /> */}
+        {/* <Button onPress={() => storeObj(todoArr, 'todosArr')} title="set" /> */}
+        {/* <Button
+          onPress={() => console.log('local obj', getObj('todosArr'))}
+          title="get"
+        /> */}
         {/* List View */}
         <FlatList
           showsVerticalScrollIndicator={false}
@@ -87,7 +89,6 @@ const Welcome = ({navigation, todoArr, addTodo, deleteTodo}) => {
 };
 const mapStateToProps = (state) => ({
   todoArr: state.todos,
-  user2: state.r2.user,
 });
 const mapDispatchToProps = (dispatch) => ({
   addTodo: (data) => dispatch(todoData(data)),

@@ -2,48 +2,58 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
 import {TextLoader, DotsLoader} from 'react-native-indicator';
 import {connect} from 'react-redux';
-import{storeData, getData} from '../config/AsyncConfig'
-import {initilizeTodos} from '../redux/action'
-import { MMKV } from 'react-native-mmkv';
-
+import {storeObj, getObj} from '../config/AsyncConfig';
+import {initilizeTodos} from '../redux/action';
+import {MMKV} from 'react-native-mmkv';
 
 const SplashScreen = ({navigation, initilizeTodos}) => {
-  // console.log('getting =>>', getData('@todosArr'))
-  useEffect(() => {
-    // settodoDataState(todosLocalData)
-    },[]);
+  // const [todosArrState, settodosArrState] = useState('default');
+  // useEffect(() => {
+  //   todosArrData();
+  // }, []);
+  setTimeout(() => {
+    todosArrData();
+  }, 1000);
 
-    MMKV.set('user.name', 'Marc')
-    const username = MMKV.getString('user.name') // 'Marc'
-    console.log(username)
+  const todosArrData = async () => {
+    const data = await getObj('todosArr');
+    console.log('data=====..>>>',data)
+   if(data !== ''){
+     await initilizeTodos(data);
+     navigation.replace('AppDrawer');
+    }else{
 
+      navigation.replace('AppDrawer');
+    }
+  };
+
+  //  useEffect(() => {
+  //   settodosArrState(getObj('todosArr'))
+  //     },[]);
   // setTimeout(() => {
-  //     initilizeTodos(todoDataState)
+  //     initilizeTodos(todosArrState)
   //     navigation.replace('AppDrawer');
   // }, 3000);
-  
+
   return (
     <>
       <View style={styles.container}>
         <Image source={require('../Assets/hado.jpg')} style={styles.logo} />
-      {/* <Text style={styles.text}>RAEES MARKETING SERVICES</Text> */}
+        {/* <Text style={styles.text}>RAEES MARKETING SERVICES</Text> */}
         {/* <LogoHeader /> */}
         <DotsLoader color="#0f0f0f" />
         {/* <TextLoader text="Loading" /> */}
       </View>
     </>
   );
-
 };
 
-const mapStateToProps = (state) => ({
-//   user: state.userData.name,
-  // user2: state.r2.user,
-});
+// const mapStateToProps = (state) => ({
+// });
 const mapDispatchToProps = (dispatch) => ({
   initilizeTodos: (data) => dispatch(initilizeTodos(data)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(SplashScreen);
+export default connect(null, mapDispatchToProps)(SplashScreen);
 // export default SplashScreen;
 
 const styles = StyleSheet.create({
@@ -53,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     paddingTop: 100,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
   logo: {
     height: 150,

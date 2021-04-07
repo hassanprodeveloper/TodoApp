@@ -49,7 +49,6 @@ const checkHandler = ()=>{
 
 // const mapStateToProps = (state) => ({
 //   todoArr: state.todos,
-//   user2: state.r2.user,
 // });
 const mapDispatchToProps = (dispatch) => ({
   deleteTodo: (data) => dispatch(deleteTodo(data)),
