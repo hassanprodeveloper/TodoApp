@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import {StyleSheet, View, Text, Button, TouchableOpacity} from 'react-native';
 import {Checkbox} from 'react-native-paper';
@@ -6,18 +5,25 @@ import {connect} from 'react-redux';
 import {deleteTodo, todoStatus} from '../redux/action';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const TodoCard = ({navigation, id, todoText, status, deleteTodo, todoStatus}) => {
+const TodoCard = ({
+  navigation,
+  id,
+  todoText,
+  status,
+  deleteTodo,
+  todoStatus,
+}) => {
   const [checked, setChecked] = React.useState(status);
-const checkHandler = ()=>{
-  setChecked(!checked);
-  todoStatus({id: id, status: !checked})
-}
+  const checkHandler = () => {
+    setChecked(!checked);
+    todoStatus({id: id, status: !checked});
+  };
 
   return (
     <>
-        <View id={id} style={styles.TodoCard_mainCont}>
-          <View style={styles.TodoCard_todoCont}>
-            <Checkbox
+      <View id={id} style={styles.TodoCard_mainCont}>
+        <View style={styles.TodoCard_todoCont}>
+          <Checkbox
             style={styles.TodoCard_checkBok}
             status={checked ? 'checked' : 'unchecked'}
             onPress={() => checkHandler()}
@@ -33,16 +39,16 @@ const checkHandler = ()=>{
               {todoText}
             </Text>
           </TouchableOpacity>
-          </View>
-          <Ionicons
-            name="ios-trash-outline"
-            // onPress={() => addTodo({id: 5, task: 'redux', done: false})}
-            onPress={() => deleteTodo(id)}
-            color="#c61515"
-            size={20}
-            style={{marginHorizontal: 15}}
-          />
         </View>
+        <Ionicons
+          name="ios-trash-outline"
+          // onPress={() => addTodo({id: 5, task: 'redux', done: false})}
+          onPress={() => deleteTodo(id)}
+          color="#c61515"
+          size={20}
+          style={{marginHorizontal: 15}}
+        />
+      </View>
     </>
   );
 };
@@ -69,11 +75,11 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 22,
     borderBottomLeftRadius: 22,
   },
-  TodoCard_todoCont:{
+  TodoCard_todoCont: {
     // justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    flex: 1
+    flex: 1,
   },
   TodoCard_checkBok: {},
   TodoCard_text: {

@@ -1,8 +1,5 @@
-import Welcome from '../screens/Welcome'
-import Home from '../screens/Home'
-import About from '../screens/About'
-import SplashScreen from '../screens/SplashScreen'
-import AppDrawer from './Drawer'
+import Home from '../screens/Home';
+import SplashScreen from '../screens/SplashScreen';
+import AppDrawer from './Drawer';
 
-
-export {Welcome, Home, About, SplashScreen, AppDrawer};
+export {Home, SplashScreen, AppDrawer};

@@ -1,21 +1,18 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 const Signature = () => {
   return (
     <View style={styles.adminCont}>
       <View style={styles.adminButton}>
-        {/* <Text style={styles.signature}>HA Developers ORG.</Text> */}
         <Text style={styles.signature}>HADO.pk</Text>
       </View>
     </View>
   );
 };
-
 export default Signature;
 
 const styles = StyleSheet.create({
-  
   adminButton: {
     marginVertical: 5,
   },
@@ -29,7 +26,6 @@ const styles = StyleSheet.create({
   adminCont: {
     alignSelf: 'flex-end',
     justifyContent: 'flex-end',
-    // backgroundColor: 'green',
     paddingHorizontal: 20,
     paddingVertical: 5,
   },

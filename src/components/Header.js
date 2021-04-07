@@ -1,22 +1,14 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  TextInput,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {windowWidth, windowHeight} from '../Assets/Dimensions';
+
 const Header = ({navigation, title, iconType, ...rest}) => {
   return (
     <>
       <View style={styles.HeaderCont}>
         <Icon
           style={styles.drawericon}
-          //   name="ios-menu-sharp"
           name={iconType}
           {...rest}
           color="#0f0f0f"
@@ -29,11 +21,10 @@ const Header = ({navigation, title, iconType, ...rest}) => {
     </>
   );
 };
-
 export default Header;
+
 const styles = StyleSheet.create({
   HeaderCont: {
-    // backgroundColor: 'aqua',
     width: windowWidth,
     flexDirection: 'row',
     alignItems: 'center',
@@ -42,8 +33,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     textTransform: 'capitalize',
-},
-headerTitleCont: {
+  },
+  headerTitleCont: {
     flex: 1,
     paddingHorizontal: 5,
     justifyContent: 'center',

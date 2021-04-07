@@ -1,25 +1,12 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {
-  Avatar,
-  Switch,
-  ScrollView,
-  Text,
-  Caption,
-  Paragraph,
-  Drawer,
-  Title,
-  TouchableRipple,
-} from 'react-native-paper';
+import {Avatar, Caption, Drawer, Title} from 'react-native-paper';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Signature from './Signature'
+import Signature from './Signature';
 
 const DrawerContent = (props) => {
   const [inDarkTheme, setIsDarkTheme] = React.useState(false);
-  const toggleTheme = () => {
-    setIsDarkTheme(!inDarkTheme);
-  };
 
   return (
     <View style={{flex: 1}}>
@@ -48,7 +35,6 @@ const DrawerContent = (props) => {
               label="Home"
               onPress={() => props.navigation.navigate('DrawerWelcome')}
             />
-
             <DrawerItem
               icon={({color, size}) => (
                 <Icon name="notification-clear-all" color={color} size={size} />
@@ -56,51 +42,15 @@ const DrawerContent = (props) => {
               label="Clear All Todos"
               onPress={() => props.navigation.navigate('DrawerHome')}
             />
-
-            {/* <DrawerItem
-                            icon={({color, size}) => (
-                              <Icon
-                                name='home-outline'
-                                color={color}
-                                size={size}
-                              />
-                            )}
-                            label='About'
-                            onPress={() => props.navigation.navigate('DrawerAbout')}
-                        /> */}
           </Drawer.Section>
-          {/* <Drawer.Section title='Preferences'>
-                        <TouchableRipple onPress={() => {toggleTheme()}}>
-                            <View style={styles.preferences}>
-                                <Text>Dark Theme</Text>
-                                <View pointerEvents="none">
-                                    <Switch value={inDarkTheme}/>
-                                </View>
-                            </View>
-                        </TouchableRipple>
-                    </Drawer.Section> */}
         </View>
       </DrawerContentScrollView>
+      {/* HADO.pk signature */}
       <Signature />
-      {/* <Drawer.Section style={styles.bottomDrawerSection}>
-                <DrawerItem
-                    icon={({color, size}) => (
-                        <Icon
-                            name='exit-to-app'
-                            color={color}
-                            size={size}
-                        />
-                    )}
-                    label='Sign Out'
-                    onPress={() => {}}
-                 />
-            </Drawer.Section> */}
     </View>
   );
 };
-
 export default DrawerContent;
-
 // STYLE SHEET DWON HERE
 const styles = StyleSheet.create({
   drawerContent: {
